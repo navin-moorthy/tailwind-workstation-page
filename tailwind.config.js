@@ -8,11 +8,13 @@ module.exports = {
       colors: {
         "light-blue": colors.lightBlue,
         cyan: colors.cyan,
+        teal: colors.teal,
       },
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
+  variants: { extend: {} },
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 }
