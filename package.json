@@ -5,17 +5,11 @@
     "build": "vite build",
     "commit": "gacp",
     "dev": "vite",
-    "format": "prettier --write \"**/*.{js,ts,css,less,json,md,html,yml,yaml,pcss,jsx,tsx}\"",
+    "format": "prettier --write \"*.{js,ts,css,less,json,md,html,yml,yaml,pcss,jsx,tsx}\"",
     "format:package": "sort-package-json",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --ext .js --fix",
     "serve": "vite preview"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "commitlint": {
     "extends": [
