@@ -4,16 +4,9 @@ Quickly prototype tailwind sites using Vite build tool.
 
 ## Get Started
 
+> Install the packages
+
 `yarn`
-
-## Eslint
-
-> Uses **Airbnb Base** configs
-
-## Prettier
-
-> Used in conjuction with Eslint with `eslint-plugin-prettier` &
-> `eslint-config-prettier`
 
 ## Local Development
 
@@ -32,6 +25,31 @@ Quickly prototype tailwind sites using Vite build tool.
 > Serve the built site
 
 `yarn serve`
+
+## Eslint
+
+> Uses **Airbnb Base** configs
+
+> Check for the linting errors
+
+`yarn lint`
+
+> Check & automatically fix the linting errors
+
+`yarn lint:fix`
+
+## Prettier
+
+> Used in conjuction with Eslint with `eslint-plugin-prettier` &
+> `eslint-config-prettier`
+
+> Format the workspace files
+
+`yarn format`
+
+> Format the `package.json` file
+
+`yarn format:package`
 
 ## Commit
 
