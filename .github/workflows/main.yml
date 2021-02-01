@@ -28,7 +28,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           yarn install
-          yarn build
+          yarn build --base=/tailwind-workstation-page/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
