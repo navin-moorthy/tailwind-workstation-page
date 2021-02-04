@@ -1,6 +1,6 @@
-# Vite Tailwind JS Template
+# Tailwind's Workstation Landing Page
 
-Quickly prototype tailwind sites using Vite build tool.
+My own version of Workstation Landing Page from Tailwind UI
 
 ## Get Started
 

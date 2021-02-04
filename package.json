@@ -1,5 +1,5 @@
 {
-  "name": "vite-tailwind-template",
+  "name": "tailwind-workstation-page",
   "version": "0.0.0",
   "scripts": {
     "build": "vite build",
