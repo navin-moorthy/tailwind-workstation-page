@@ -1,6 +1,4 @@
-# Vite Tailwind JS Template
-
-Quickly prototype tailwind sites using Vite build tool.
+# Tailwind Workstation Original UI
 
 ## Get Started
 
