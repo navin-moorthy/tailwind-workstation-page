@@ -11,14 +11,14 @@
     />
   </head>
   <body>
-    <header class="bg-gray-900">
+    <header class="bg-gray-900" x-data="{ open: false }">
       <nav
         class="flex items-center justify-between px-4 pt-6"
         aria-label="Global"
       >
         <a
           href="#"
-          class="rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          class="rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-400"
         >
           <span class="sr-only">Tailwind Workstation Logo</span>
           <img
@@ -29,7 +29,8 @@
         </a>
         <button
           type="button"
-          class="p-2 text-gray-400 rounded-md hover:bg-gray-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-400"
+          class="p-2 -mr-2 text-gray-400 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-400"
+          @click="open=!open"
         >
           <span class="sr-only">Open main menu</span>
           <svg
@@ -49,6 +50,104 @@
           </svg>
         </button>
       </nav>
+
+      <!-- Mobile menu, show/hide based on menu open state. -->
+      <div
+        x-show="open"
+        x-transition:enter="duration-150 ease-out"
+        x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="duration-100 ease-in"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95"
+        class="absolute inset-x-0 top-0 p-2 transition origin-top-right transform"
+      >
+        <div
+          class="overflow-hidden bg-white rounded-lg shadow-md ring-1 ring-black ring-opacity-5"
+        >
+          <div class="flex items-center justify-between px-5 pt-4">
+            <a
+              href="#"
+              class="rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
+            >
+              <span class="sr-only">Tailwind Workstation Logo</span>
+              <img
+                src="https://tailwindui.com/img/logos/workflow-mark-teal-500-cyan-600.svg"
+                alt=""
+                class="w-8 h-8"
+              />
+            </a>
+            <button
+              type="button"
+              class="p-2 -mr-2 text-gray-400 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-400"
+              @click="open=!open"
+            >
+              <span class="sr-only">Close main menu</span>
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <ul class="pt-5 pb-6">
+            <li class="px-2">
+              <a
+                href="#"
+                class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                >Product</a
+              >
+            </li>
+            <li class="px-2 mt-1">
+              <a
+                href="#"
+                class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                >Features</a
+              >
+            </li>
+            <li class="px-2 mt-1">
+              <a
+                href="#"
+                class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                >Marketplace</a
+              >
+            </li>
+            <li class="px-2 mt-1">
+              <a
+                href="#"
+                class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                >Company</a
+              >
+            </li>
+            <li class="px-5 mt-6">
+              <a
+                href="#"
+                class="block px-4 py-3 font-medium text-center text-white rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-gray-800"
+                >Start free trail</a
+              >
+            </li>
+            <li class="px-5 mt-6">
+              <p class="text-base font-medium text-center text-gray-500">
+                Existing customer?
+                <a
+                  href="#"
+                  class="text-gray-900 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  >Login</a
+                >
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </header>
 
     <script type="module" src="/src/main.js"></script>
