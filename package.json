@@ -33,7 +33,7 @@
     "@tailwindcss/aspect-ratio": "0.2.0",
     "@tailwindcss/forms": "0.2.1",
     "autoprefixer": "10.2.4",
-    "eslint": "7.19.0",
+    "eslint": "7.20.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-import": "2.22.1",
@@ -42,12 +42,12 @@
     "husky": "5.0.9",
     "lint-staged": "10.5.4",
     "pinst": "2.1.4",
-    "postcss": "8.2.5",
+    "postcss": "8.2.6",
     "prettier": "2.2.1",
     "pretty-quick": "3.1.0",
     "sort-package-json": "1.48.1",
     "tailwindcss": "2.0.3",
-    "vite": "2.0.0-beta.67"
+    "vite": "2.0.0-beta.69"
   },
   "gacp": {
     "add": false,
