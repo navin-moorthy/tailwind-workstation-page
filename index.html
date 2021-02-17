@@ -11,45 +11,43 @@
     />
   </head>
   <body>
-    <div x-data="{ open: false }">
-      <header class="pt-6 bg-gray-900">
-        <nav class="flex items-center justify-between px-4" aria-label="Global">
-          <a
-            href="#"
-            class="rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-400"
+    <header class="pt-6 bg-gray-900" x-data="{ open: false }">
+      <nav class="flex items-center justify-between px-4" aria-label="Global">
+        <a
+          href="#"
+          class="rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-400"
+        >
+          <span class="sr-only">Tailwind Workstation Logo</span>
+          <img
+            src="https://tailwindui.com/img/logos/workflow-mark-teal-200-cyan-400.svg"
+            alt=""
+            class="w-8 h-8"
+          />
+        </a>
+        <button
+          type="button"
+          class="p-2 -mr-2 text-gray-400 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-400"
+          @click="open=!open"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+            focusable="false"
+            class="w-6 h-6"
           >
-            <span class="sr-only">Tailwind Workstation Logo</span>
-            <img
-              src="https://tailwindui.com/img/logos/workflow-mark-teal-200-cyan-400.svg"
-              alt=""
-              class="w-8 h-8"
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
             />
-          </a>
-          <button
-            type="button"
-            class="p-2 -mr-2 text-gray-400 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-400"
-            @click="open=!open"
-          >
-            <span class="sr-only">Open main menu</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-              focusable="false"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </nav>
-      </header>
+          </svg>
+        </button>
+      </nav>
 
       <!-- Mobile menu, show/hide based on menu open state. -->
       <div
@@ -61,11 +59,14 @@
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
         class="absolute inset-x-0 top-0 p-2 transition origin-top-right transform"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Main menu"
       >
         <div
           class="overflow-hidden bg-white rounded-lg shadow-md ring-1 ring-black ring-opacity-5"
         >
-          <header class="flex items-center justify-between px-5 pt-4">
+          <div class="flex items-center justify-between px-5 pt-4">
             <a
               href="#"
               class="rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
@@ -100,7 +101,7 @@
                 ></path>
               </svg>
             </button>
-          </header>
+          </div>
           <nav>
             <ul class="pt-5 pb-6">
               <li class="px-2">
@@ -152,7 +153,7 @@
           </nav>
         </div>
       </div>
-    </div>
+    </header>
 
     <script type="module" src="/src/main.js"></script>
   </body>
