@@ -26,6 +26,7 @@
         </a>
         <button
           type="button"
+          id="dialog-button"
           class="p-2 -mr-2 text-gray-400 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-400"
           @click="open=!open"
         >
@@ -51,6 +52,11 @@
 
       <!-- Mobile menu, show/hide based on menu open state. -->
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Main menu"
+        id="dialog"
+        class="absolute inset-x-0 top-0 p-2 transition origin-top-right transform"
         x-show="open"
         x-transition:enter="duration-150 ease-out"
         x-transition:enter-start="opacity-0 scale-95"
@@ -58,10 +64,6 @@
         x-transition:leave="duration-100 ease-in"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        class="absolute inset-x-0 top-0 p-2 transition origin-top-right transform"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Main menu"
       >
         <div
           class="overflow-hidden bg-white rounded-lg shadow-md ring-1 ring-black ring-opacity-5"

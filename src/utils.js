@@ -1,6 +1,27 @@
+export function $(selector, scope = document) {
+  return scope.querySelector(selector)
+}
+
+export function $$(selector, scope = document) {
+  return Array.from(scope.querySelectorAll(selector))
+}
+
+export function $id(selector, scope = document) {
+  return scope.getElementById(selector)
+}
+
+export function listen(type, selector, callback) {
+  document.addEventListener(type, event => {
+    const target = event.target.closest(selector)
+
+    if (target) {
+      callback(event, target)
+    }
+  })
+}
+
 /**
- * @description
- *  Key code constants
+ * @description Key code constants
  */
 export const keyCode = {
   BACKSPACE: 8,
@@ -28,6 +49,7 @@ export function remove(item) {
   if (item.remove && typeof item.remove === "function") {
     return item.remove()
   }
+
   if (
     item.parentNode &&
     item.parentNode.removeChild &&
@@ -35,6 +57,7 @@ export function remove(item) {
   ) {
     return item.parentNode.removeChild(item)
   }
+
   return false
 }
 
