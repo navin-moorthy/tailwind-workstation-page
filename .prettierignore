@@ -1,10 +1,16 @@
+## OS
 node_modules
-.next
-.cache
-build
-public
-dist
-coverage
+.DS_Store
+.idea
+.editorconfig
+.npmrc
 package.json
 package-lock.json
 yarn.lock
+
+## Built-files
+.next
+.cache
+build
+dist
+coverage
