@@ -6,5 +6,6 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': ['error', { devDependencies: ['tailwind.config.js'] }],
     'no-console': 'off',
+    'no-param-reassign': 'off',
   },
 };

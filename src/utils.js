@@ -28,68 +28,142 @@ export function listen(type, selector, callback) {
   });
 }
 
+export function hasClass(element, className) {
+  return element.classList.contains(className);
+}
+
+export function addClass(element, className) {
+  if (!hasClass(element, className)) {
+    element.classList.add(className);
+  }
+}
+
+export function addClasses(element, classNames) {
+  element.classList.add(...classNames);
+}
+
+export function removeClass(element, className) {
+  element.classList.remove(className);
+}
+
+export function removeClasses(element, classNames) {
+  element.classList.remove(...classNames);
+}
+
+// Transition Enter / Transition Leave Animation
+// https://sebastiandedeyne.com/javascript-framework-diet/enter-leave-transitions/
+function nextFrame() {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(resolve);
+    });
+  });
+}
+
+function afterTransition(element) {
+  return new Promise((resolve) => {
+    const duration = Number(getComputedStyle(element).transitionDuration.replace('s', '')) * 1000;
+
+    setTimeout(() => {
+      resolve();
+    }, duration);
+  });
+}
+
+export const enterTransition = async (element, classes) => {
+  const { enterClass, enterStartClass, enterEndClass } = classes;
+  removeClass(element, 'hidden');
+
+  addClasses(element, enterClass);
+  addClasses(element, enterStartClass);
+
+  await nextFrame();
+
+  removeClasses(element, enterStartClass);
+  addClasses(element, enterEndClass);
+
+  await afterTransition(element);
+
+  removeClasses(element, enterEndClass);
+  removeClasses(element, enterClass);
+};
+
+export async function leaveTransition(element, classes) {
+  const { leaveClass, leaveStartClass, leaveEndClass } = classes;
+
+  addClasses(element, leaveClass);
+  addClasses(element, leaveStartClass);
+
+  await nextFrame();
+
+  removeClasses(element, leaveStartClass);
+  addClasses(element, leaveEndClass);
+
+  await afterTransition(element);
+
+  removeClasses(element, leaveEndClass);
+  removeClasses(element, leaveClass);
+  addClass(element, 'hidden');
+}
+
 /**
  * @description Key code constants
  */
-// export const keyCode = {
-//   BACKSPACE: 8,
-//   TAB: 9,
-//   RETURN: 13,
-//   SHIFT: 16,
-//   ESC: 27,
-//   SPACE: 32,
-//   PAGE_UP: 33,
-//   PAGE_DOWN: 34,
-//   END: 35,
-//   HOME: 36,
-//   LEFT: 37,
-//   UP: 38,
-//   RIGHT: 39,
-//   DOWN: 40,
-//   DELETE: 46,
-// };
+export const keyCode = {
+  BACKSPACE: 8,
+  TAB: 9,
+  RETURN: 13,
+  SHIFT: 16,
+  ESC: 27,
+  SPACE: 32,
+  PAGE_UP: 33,
+  PAGE_DOWN: 34,
+  END: 35,
+  HOME: 36,
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40,
+  DELETE: 46,
+};
 
-// export function matches(element, selector) {
-//   return element.matches(selector);
-// }
+export function isFocusable(element) {
+  if (element.tabIndex < 0) {
+    return false;
+  }
 
-// export function remove(item) {
-//   if (item.remove && typeof item.remove === 'function') {
-//     return item.remove();
-//   }
+  if (element.disabled) {
+    return false;
+  }
 
-//   if (item.parentNode && item.parentNode.removeChild && typeof item.parentNode.removeChild === 'function') {
-//     return item.parentNode.removeChild(item);
-//   }
+  switch (element.nodeName) {
+    case 'A':
+      return !!element.href && element.rel !== 'ignore';
 
-//   return false;
-// }
+    case 'INPUT':
+      return element.type !== 'hidden';
 
-// export function isFocusable(element) {
-//   if (element.tabIndex < 0) {
-//     return false;
-//   }
+    case 'BUTTON':
+    case 'SELECT':
+    case 'TEXTAREA':
+      return true;
 
-//   if (element.disabled) {
-//     return false;
-//   }
+    default:
+      return false;
+  }
+}
 
-//   switch (element.nodeName) {
-//     case 'A':
-//       return !!element.href && element.rel !== 'ignore';
+export function remove(item) {
+  if (item.remove && typeof item.remove === 'function') {
+    return item.remove();
+  }
 
-//     case 'INPUT':
-//       return element.type !== 'hidden';
+  if (item.parentNode && item.parentNode.removeChild && typeof item.parentNode.removeChild === 'function') {
+    return item.parentNode.removeChild(item);
+  }
 
-//     case 'BUTTON':
-//     case 'SELECT':
-//     case 'TEXTAREA':
-//       return true;
-
-//     default:
-//       return false;
-//   }
-// }
+  return false;
+}
 
 // export function getAncestorBySelector(element, selector) {
 //   if (!matches(element, `${selector} ${element.tagName}`)) {
@@ -109,20 +183,6 @@ export function listen(type, selector, callback) {
 //   }
 
 //   return ancestor;
-// }
-
-// export function hasClass(element, className) {
-//   return element.classList.contains(className);
-// }
-
-// export function addClass(element, className) {
-//   if (!hasClass(element, className)) {
-//     element.classlist.addClass(className);
-//   }
-// }
-
-// export function removeClass(element, className) {
-//   element.classList.removeClass(className);
 // }
 
 // export function bindMethods(object, ...methodNames) {
