@@ -66,13 +66,13 @@ const handleEscape = (event) => {
 document.addEventListener('keyup', handleEscape);
 
 const checkHasDialogRole = (node) => {
-  const validRoles = ['dialog', 'alertdialog'];
+  const validRoles = new Set(['dialog', 'alertdialog']);
   const dialogNodeRole = node.getAttribute('role') || '';
 
   return dialogNodeRole
     .trim()
     .split(/\s+/g)
-    .some((token) => validRoles.some((role) => token === role));
+    .some((token) => validRoles.has(token));
 };
 
 const createDiv = () => document.createElement('div');
@@ -185,7 +185,9 @@ const openDialog = (dialogId, focusAfterClosed, focusFirst) => {
   const isDialog = checkHasDialogRole(dialogNode);
 
   if (!isDialog) {
-    console.error('openDialog() requires a DOM element with ARIA role of dialog or alertdialog.');
+    console.error(
+      'openDialog() requires a DOM element with ARIA role of dialog or alertdialog.',
+    );
     return;
   }
 
@@ -207,8 +209,11 @@ const openDialog = (dialogId, focusAfterClosed, focusFirst) => {
       'bg-black',
       'bg-opacity-20',
     ]);
-    dialogNode.parentNode.insertBefore(dialogNode.dialogBackdropNode, dialogNode);
-    dialogNode.dialogBackdropNode.appendChild(dialogNode);
+    dialogNode.parentNode.insertBefore(
+      dialogNode.dialogBackdropNode,
+      dialogNode,
+    );
+    dialogNode.dialogBackdropNode.append(dialogNode);
   }
 
   enterTransition(dialogNode.dialogBackdropNode, enterTransitionClasses);
@@ -224,11 +229,16 @@ const openDialog = (dialogId, focusAfterClosed, focusFirst) => {
   dialogNode.prevNode = dialogNode.parentNode.insertBefore(prevDiv, dialogNode);
   dialogNode.prevNode.tabIndex = 0;
   const postDiv = createDiv();
-  dialogNode.postNode = dialogNode.parentNode.insertBefore(postDiv, dialogNode.nextSibling);
+  dialogNode.postNode = dialogNode.parentNode.insertBefore(
+    postDiv,
+    dialogNode.nextSibling,
+  );
   dialogNode.postNode.tabIndex = 0;
 
-  dialogNode.addFocusListener = () => document.addEventListener('focus', trapFocus, true);
-  dialogNode.removeFocusListener = () => document.removeEventListener('focus', trapFocus, true);
+  dialogNode.addFocusListener = () =>
+    document.addEventListener('focus', trapFocus, true);
+  dialogNode.removeFocusListener = () =>
+    document.removeEventListener('focus', trapFocus, true);
 
   if (openDialogList.length > 0) {
     getCurrentDialog().removeFocusListener();

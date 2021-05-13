@@ -4,8 +4,11 @@ module.exports = {
     browser: true,
   },
   rules: {
-    'import/no-extraneous-dependencies': ['error', { devDependencies: ['tailwind.config.js'] }],
     'no-console': 'off',
     'no-param-reassign': 'off',
+    '@html-eslint/indent': ['error', 2],
+  },
+  settings: {
+    compat: true,
   },
 };

@@ -14,3 +14,8 @@ yarn.lock
 build
 dist
 coverage
+
+## Local Ignores
+tailwind.config.js
+postcss.config.js
+.eslintrc.js

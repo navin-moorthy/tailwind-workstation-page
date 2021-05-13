@@ -62,7 +62,9 @@ function nextFrame() {
 
 function afterTransition(element) {
   return new Promise((resolve) => {
-    const duration = Number(getComputedStyle(element).transitionDuration.replace('s', '')) * 1000;
+    const duration =
+      Number(getComputedStyle(element).transitionDuration.replace('s', '')) *
+      1000;
 
     setTimeout(() => {
       resolve();
@@ -158,7 +160,11 @@ export function remove(item) {
     return item.remove();
   }
 
-  if (item.parentNode && item.parentNode.removeChild && typeof item.parentNode.removeChild === 'function') {
+  if (
+    item.parentNode &&
+    item.parentNode.removeChild &&
+    typeof item.parentNode.removeChild === 'function'
+  ) {
     return item.parentNode.removeChild(item);
   }
 

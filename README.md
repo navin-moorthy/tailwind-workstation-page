@@ -62,3 +62,7 @@ My own version of Workstation Landing Page from Tailwind UI
   pre-commit hook to run lintes & formatters
 - Husky lints the commit message with
   [Commitlint](https://github.com/conventional-changelog/commitlint)
+
+## NOTE:
+
+- Do not update Prettier to v2.3.0
